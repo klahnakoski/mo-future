@@ -1,2 +1,2 @@
 # mo-future
-More future!  Make Python compatibility a little bit easier
+More future!  Make Python 2/3 compatibility a little bit easier
