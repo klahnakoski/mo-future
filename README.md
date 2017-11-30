@@ -21,13 +21,13 @@ All compatibility types are top-level
 Instead of 
 
 ```python
-	from future.utils import text_type
+    from future.utils import text_type
 ```
 
 you get the same, but without having to discover what sub-module the `text_type` is hiding:  
 
 ```python
-	from mo_future import text_type
+    from mo_future import text_type
 ```
 
 
@@ -36,19 +36,19 @@ you get the same, but without having to discover what sub-module the `text_type`
 Instead of writing conditional imports like 
 
 ```python
-	try:
+    try:
         from io import StringIO
-	except:
-		from StringIO import StringIO
+    except:
+        from StringIO import StringIO
 ```
 
 or 
 
 ```python
-	if PY3:
+    if PY3:
         from io import StringIO
-	else:
-		from StringIO import StringIO
+    else:
+        from StringIO import StringIO
 ```
 
 you can use `mo-future`:
