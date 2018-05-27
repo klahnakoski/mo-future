@@ -44,7 +44,7 @@ def find_packages(where='.', lib_prefix='', exclude=()):
 
 setup(
     name='mo-future',
-    version="1.6.18072",
+    version="2.3.18147",
     description='More future! Make Python 2/3 compatibility a little bit easier',
     long_description=long_desc,
     author='Kyle Lahnakoski',
