@@ -1,0 +1,17 @@
+{
+    "name": "mo-future",
+    "version": "2.18.18240",
+    "description": "More future! Make Python 2/3 compatibility a bit easier",
+    "author": "Kyle Lahnakoski",
+    "author_email": "kyle@lahnakoski.com",
+    "url": "https://github.com/klahnakoski/mo-files",
+    "license": "MPL 2.0",
+    "classifiers": [
+        "Development Status :: 4 - Beta",
+        "Topic :: Software Development :: Libraries",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.6"
+    ]
+}
