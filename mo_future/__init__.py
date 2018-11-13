@@ -14,6 +14,7 @@ from __future__ import unicode_literals
 import json
 import sys
 
+
 PY3 = sys.version_info[0] == 3
 PY2 = sys.version_info[0] == 2
 
@@ -29,12 +30,15 @@ none_type = type(None)
 boolean_type = type(True)
 
 if PY3:
+    import itertools
     import collections
     from functools import cmp_to_key
     from configparser import ConfigParser
     from itertools import zip_longest
+    from functools import reduce
 
     izip = zip
+    zip_longest = itertools.zip_longest
 
     text_type = str
     string_types = str
@@ -112,6 +116,7 @@ else:
     from __builtin__ import zip as transpose
     from itertools import izip
 
+    reduce = __builtin__.reduce
     text_type = __builtin__.unicode
     string_types = (str, unicode)
     binary_type = str
