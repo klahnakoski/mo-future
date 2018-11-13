@@ -2,21 +2,16 @@
 
 More future!  Make Python 2/3 compatibility a little bit easier
 
-## Details
+### Problem 
 
-All the data types that have changed, and all the libraries that have moved, are put into the `mo-future` top-level module so it is easy to find.
+`future` or `six` are hard to use: It is easy to google how to import an object in Python2, or Python3, but finding the full path in these compatibility libraries is difficult. 
 
-**This module is only intended for the `mo-*` series of libraries, but pull requests are welcome**
+## Solution
 
-
-### Replaces `future` or `six`
-
-Many of the compatibility types declared by `future` or `six` are in `mo-future`
+All the modules and types required for compatibility are put into the `mo-future` top-level module so they are  easy to find.
 
 
 ### Flat namespace
-
-All compatibility types are top-level
 
 Instead of 
 
