@@ -33,6 +33,7 @@ if PY3:
     from configparser import ConfigParser
     from itertools import zip_longest
     from functools import reduce
+    import builtins as __builtin__
 
     izip = zip
     zip_longest = itertools.zip_longest
@@ -254,4 +255,4 @@ else:
                 d[key] = value
             return d
 
-_ = (ConfigParser, zip_longest, reduce, transpose, izip, HTMLParser, urlparse, StringIO, BytesIO, allocate_lock, get_ident, start_new_thread, interrupt_main)
+_keep_imports = (ConfigParser, zip_longest, reduce, transpose, izip, HTMLParser, urlparse, StringIO, BytesIO, allocate_lock, get_ident, start_new_thread, interrupt_main)
