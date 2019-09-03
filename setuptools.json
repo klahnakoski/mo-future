@@ -16,6 +16,6 @@
     "long_description_content_type": "text/markdown",
     "name": "mo-future",
     "packages": ["mo_future"],
-    "url": "https://github.com/klahnakoski/mo-files",
+    "url": "https://github.com/klahnakoski/mo-future",
     "version": "2.48.19205"
 }
