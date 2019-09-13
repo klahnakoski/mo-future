@@ -1,5 +1,3 @@
-.gitignore
-setup.py
-/mo_future/.svn
-/*.iml
-/.idea
+.idea
+.svn
+*.iml
