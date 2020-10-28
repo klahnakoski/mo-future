@@ -7,12 +7,12 @@ setup(
     author_email='kyle@lahnakoski.com',
     classifiers=["Development Status :: 4 - Beta","Topic :: Software Development :: Libraries","Topic :: Software Development :: Libraries :: Python Modules","License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)","Programming Language :: Python :: 2.7","Programming Language :: Python :: 3.6"],
     description='More future! Make Python 2/3 compatibility a bit easier',
-    install_requires=[],
+    install_requires=<mo_dots.lists.FlatList object at 0x0000026A7B447548>,
     license='MPL 2.0',
     long_description='# mo-future\n\nMore future!  Make Python 2/3 compatibility a little bit easier\n\n### Problem \n\n`future` or `six` are hard to use: It is easy to google how to import an object in Python2, or Python3, but finding the full path in these compatibility libraries is difficult. \n\n## Solution\n\nAll the modules and types required for compatibility are put into the `mo-future` top-level module so they are  easy to find.\n\n\n### Flat namespace\n\nInstead of \n\n```python\n    from future.utils import text_type\n```\n\nyou get the same, but without having to discover what sub-module the `text_type` is hiding:  \n\n```python\n    from mo_future import text_type\n```\n\n\n### Simpler imports\n\nInstead of writing conditional imports like \n\n```python\n    try:\n        from io import StringIO\n    except:\n        from StringIO import StringIO\n```\n\nor \n\n```python\n    if PY3:\n        from io import StringIO\n    else:\n        from StringIO import StringIO\n```\n\nyou can use `mo-future`:\n\n```python\n    from mo_future import StringIO\n```\n\n\n',
     long_description_content_type='text/markdown',
     name='mo-future',
     packages=["mo_future"],
     url='https://github.com/klahnakoski/mo-future',
-    version='3.89.20246'
+    version='3.127.20302'
 )
