@@ -201,10 +201,6 @@ else:  # PY2
 
     def sort_using_key(data, key):
         return sorted(data, key=key)
-        # return sorted(
-        #     ((key(d), d) for d in data),
-        #     lambda a, b: (1 if (a[0]>b[0]) else (-1 if (a[0]<b[0]) else 0))
-        # )
 
     def first(values):
         try:
@@ -317,6 +313,8 @@ class decorate(object):
         return update_wrapper(caller, self.func)
 
 
-function_type = (lambda: 0).__class__
+def flatten(items):
+    return (vv for v in items for vv in v)
+
 
 _keep_imports = (ConfigParser, zip_longest, reduce, transpose, izip, HTMLParser, urlparse, StringIO, BytesIO, allocate_lock, get_ident, start_new_thread, interrupt_main)
