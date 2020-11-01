@@ -49,6 +49,12 @@ if PY3:
     import builtins as __builtin__
     from builtins import input
 
+    try:
+        from time import process_time
+    except:
+        from time import clock as process_time
+
+
     izip = zip
     zip_longest = itertools.zip_longest
 
@@ -156,6 +162,8 @@ else:  # PY2
     from __builtin__ import zip as transpose
     from itertools import izip
     from __builtin__ import raw_input as input
+
+    from time import clock as process_time
 
     reduce = __builtin__.reduce
     text = __builtin__.unicode
@@ -317,4 +325,4 @@ def flatten(items):
     return (vv for v in items for vv in v)
 
 
-_keep_imports = (ConfigParser, zip_longest, reduce, transpose, izip, HTMLParser, urlparse, StringIO, BytesIO, allocate_lock, get_ident, start_new_thread, interrupt_main)
+_keep_imports = (ConfigParser, zip_longest, reduce, transpose, izip, HTMLParser, urlparse, StringIO, BytesIO, allocate_lock, get_ident, start_new_thread, interrupt_main, process_time)

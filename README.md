@@ -16,13 +16,13 @@ All the modules and types required for compatibility are put into the `mo-future
 Instead of 
 
 ```python
-    from future.utils import text_type
+    from future.utils import text
 ```
 
-you get the same, but without having to discover what sub-module the `text_type` is hiding:  
+you get the same, but without having to discover what sub-module the `text` is hiding:  
 
 ```python
-    from mo_future import text_type
+    from mo_future import text
 ```
 
 
