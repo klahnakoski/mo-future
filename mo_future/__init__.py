@@ -54,7 +54,6 @@ if PY3:
     except:
         from time import clock as process_time
 
-
     izip = zip
     zip_longest = itertools.zip_longest
 
@@ -62,12 +61,13 @@ if PY3:
     text = str
     string_types = str
     binary_type = bytes
-    integer_types = (int, )
+    integer_types = (int,)
     number_types = (int, float)
     long = int
     unichr = chr
 
     xrange = range
+
     def _gen():
         yield
 
@@ -77,7 +77,7 @@ if PY3:
         type({}.items()),
         type({}.values()),
         type(map(lambda: 0, iter([]))),
-        type(reversed([]))
+        type(reversed([])),
     )
     unichr = chr
 
@@ -101,7 +101,7 @@ if PY3:
         return func.__name__
 
     def get_function_arguments(func):
-        return func.__code__.co_varnames[:func.__code__.co_argcount]
+        return func.__code__.co_varnames[: func.__code__.co_argcount]
 
     def get_function_code(func):
         return func.__code__
@@ -136,23 +136,34 @@ if PY3:
     def is_binary(b):
         return b.__class__ is bytes
 
-    utf8_json_encoder = json.JSONEncoder(
-        skipkeys=False,
-        ensure_ascii=False,  # DIFF FROM DEFAULTS
-        check_circular=True,
-        allow_nan=True,
-        indent=None,
-        separators=(',', ':'),
-        default=None,
-        sort_keys=True   # <-- IMPORTANT!  sort_keys==True
-    ).encode
+    utf8_json_encoder = (
+        json
+        .JSONEncoder(
+            skipkeys=False,
+            ensure_ascii=False,  # DIFF FROM DEFAULTS
+            check_circular=True,
+            allow_nan=True,
+            indent=None,
+            separators=(",", ":"),
+            default=None,
+            sort_keys=True,  # <-- IMPORTANT!  sort_keys==True
+        )
+        .encode
+    )
 
 
 else:  # PY2
     STDOUT = sys.stdout
     STDERR = sys.stderr
 
-    from collections import Callable, Iterable, Mapping, Set, MutableMapping, OrderedDict
+    from collections import (
+        Callable,
+        Iterable,
+        Mapping,
+        Set,
+        MutableMapping,
+        OrderedDict,
+    )
     from functools import cmp_to_key, reduce, update_wrapper
 
     import __builtin__
@@ -196,7 +207,7 @@ else:  # PY2
         return func.func_name
 
     def get_function_arguments(func):
-        return func.func_code.co_varnames[:func.func_code.co_argcount]
+        return func.func_code.co_varnames[: func.func_code.co_argcount]
 
     def get_function_code(func):
         return func.func_code
@@ -231,18 +242,21 @@ else:  # PY2
     def is_binary(b):
         return b.__class__ is str
 
-    utf8_json_encoder = json.JSONEncoder(
-        skipkeys=False,
-        ensure_ascii=False,  # DIFF FROM DEFAULTS
-        check_circular=True,
-        allow_nan=True,
-        indent=None,
-        separators=(',', ':'),
-        encoding='utf-8',  # DIFF FROM DEFAULTS
-        default=None,
-        sort_keys=True   # <-- IMPORTANT!  sort_keys==True
-    ).encode
-
+    utf8_json_encoder = (
+        json
+        .JSONEncoder(
+            skipkeys=False,
+            ensure_ascii=False,  # DIFF FROM DEFAULTS
+            check_circular=True,
+            allow_nan=True,
+            indent=None,
+            separators=(",", ":"),
+            encoding="utf-8",  # DIFF FROM DEFAULTS
+            default=None,
+            sort_keys=True,  # <-- IMPORTANT!  sort_keys==True
+        )
+        .encode
+    )
 
     # COPIED FROM Python's collections.UserDict (copied July 2018)
     class UserDict(MutableMapping):
@@ -250,18 +264,23 @@ else:  # PY2
         # Start by filling-out the abstract methods
         def __init__(*args, **kwargs):
             if not args:
-                raise TypeError("descriptor '__init__' of 'UserDict' object "
-                                "needs an argument")
+                raise TypeError(
+                    "descriptor '__init__' of 'UserDict' object needs an argument"
+                )
             self, args = args[0], args[1:]
             if len(args) > 1:
-                raise TypeError('expected at most 1 arguments, got %d' % len(args))
+                raise TypeError("expected at most 1 arguments, got %d" % len(args))
             if args:
                 dict = args[0]
-            elif 'dict' in kwargs:
-                dict = kwargs.pop('dict')
+            elif "dict" in kwargs:
+                dict = kwargs.pop("dict")
                 import warnings
-                warnings.warn("Passing 'dict' as keyword argument is deprecated",
-                              DeprecationWarning, stacklevel=2)
+
+                warnings.warn(
+                    "Passing 'dict' as keyword argument is deprecated",
+                    DeprecationWarning,
+                    stacklevel=2,
+                )
             else:
                 dict = None
             self.data = {}
@@ -269,15 +288,23 @@ else:  # PY2
                 self.update(dict)
             if len(kwargs):
                 self.update(kwargs)
-        def __len__(self): return len(self.data)
+
+        def __len__(self):
+            return len(self.data)
+
         def __getitem__(self, key):
             if key in self.data:
                 return self.data[key]
             if hasattr(self.__class__, "__missing__"):
                 return self.__class__.__missing__(self, key)
             raise KeyError(key)
-        def __setitem__(self, key, item): self.data[key] = item
-        def __delitem__(self, key): del self.data[key]
+
+        def __setitem__(self, key, item):
+            self.data[key] = item
+
+        def __delitem__(self, key):
+            del self.data[key]
+
         def __iter__(self):
             return iter(self.data)
 
@@ -286,11 +313,14 @@ else:  # PY2
             return key in self.data
 
         # Now, add the methods in dicts but not in MutableMapping
-        def __repr__(self): return repr(self.data)
+        def __repr__(self):
+            return repr(self.data)
+
         def copy(self):
             if self.__class__ is UserDict:
                 return UserDict(self.data.copy())
             import copy
+
             data = self.data
             try:
                 self.data = {}
@@ -299,12 +329,14 @@ else:  # PY2
                 self.data = data
             c.update(self)
             return c
+
         @classmethod
         def fromkeys(cls, iterable, value=None):
             d = cls()
             for key in iterable:
                 d[key] = value
             return d
+
 
 function_type = (lambda: None).__class__
 
@@ -325,4 +357,19 @@ def flatten(items):
     return (vv for v in items for vv in v)
 
 
-_keep_imports = (ConfigParser, zip_longest, reduce, transpose, izip, HTMLParser, urlparse, StringIO, BytesIO, allocate_lock, get_ident, start_new_thread, interrupt_main, process_time)
+_keep_imports = (
+    ConfigParser,
+    zip_longest,
+    reduce,
+    transpose,
+    izip,
+    HTMLParser,
+    urlparse,
+    StringIO,
+    BytesIO,
+    allocate_lock,
+    get_ident,
+    start_new_thread,
+    interrupt_main,
+    process_time,
+)
