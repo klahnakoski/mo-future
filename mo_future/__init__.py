@@ -42,7 +42,7 @@ if PY3:
 
     import itertools
     from collections import OrderedDict, UserDict
-    from collections.abc import Callable, Iterable, Mapping, Set, MutableMapping
+    from collections.abc import Callable, Iterable, Mapping, Set, MutableMapping, deque
     from functools import cmp_to_key, reduce, update_wrapper
     from configparser import ConfigParser
     from itertools import zip_longest
@@ -163,6 +163,7 @@ else:  # PY2
         Set,
         MutableMapping,
         OrderedDict,
+        deque
     )
     from functools import cmp_to_key, reduce, update_wrapper
 
