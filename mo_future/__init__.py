@@ -373,3 +373,5 @@ _keep_imports = (
     interrupt_main,
     process_time,
 )
+
+POS_INF = float("+inf")
