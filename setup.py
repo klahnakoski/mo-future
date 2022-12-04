@@ -13,5 +13,5 @@ setup(
     name='mo-future',
     packages=["mo_future"],
     url='https://github.com/klahnakoski/mo-future',
-    version='6.230.22310'
+    version='6.265.22338'
 )
