@@ -15,13 +15,20 @@
     "license": "MPL 2.0",
     "long_description": {
         "$concat": [
-            "# mo-future",
+            "# More Future!",
             "",
-            "More future!  Make Python 2/3 compatibility a little bit easier",
+            "For old code written against Python2, plus some tiny useful functions",
+            "",
+            "## Recent Changes",
+            "",
+            "**December 2022** - No longer points to Python2 modules. ",
+            "",
+            "",
+            "## Description",
             "",
             "### Problem ",
             "",
-            "`future` or `six` are hard to use: It is easy to google how to import an object in Python2, or Python3, but finding the full path in these compatibility libraries is difficult. ",
+            "`future` or `six` are hard to use: It is easy to google how to import an object in Python2, or Python3, but finding the full path to the same in these compatibility libraries is difficult. ",
             "",
             "## Solution",
             "",
@@ -78,5 +85,5 @@
     "name": "mo-future",
     "packages": ["mo_future"],
     "url": "https://github.com/klahnakoski/mo-future",
-    "version": "7.265.22338"
+    "version": "7.298.22349"
 }
