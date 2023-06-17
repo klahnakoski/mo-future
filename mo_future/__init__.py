@@ -6,9 +6,6 @@
 #
 # Contact: Kyle Lahnakoski (kyle@lahnakoski.com)
 #
-
-
-
 import json
 import sys
 
@@ -25,8 +22,6 @@ from io import StringIO
 from io import BytesIO
 from _thread import allocate_lock, get_ident, start_new_thread, interrupt_main
 
-
-__all__ = []
 
 PYPY = False
 PY2 = False
