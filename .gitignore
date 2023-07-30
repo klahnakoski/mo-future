@@ -1,6 +1,8 @@
 .idea
 .svn
 *.iml
+build
+*.egg-info
 
 /setup.py
 

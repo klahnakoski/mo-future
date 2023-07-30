@@ -1,0 +1,44 @@
+package:
+  name: mo-future
+  version: "7.416.23168"
+
+source:
+  git_url: https://github.com/klahnakoski/mo-future.git
+  git_rev: 7.416.23168
+
+build:
+  number: 416
+  script: c:/users/kyle/code/mo-future/packaging/conda/build.bat
+  exclude:
+    - .git*
+  exclude_pattern:
+    - '**/.svn'
+    - '**/.git'
+    - '**/.venv'
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python >=3.7
+    - setuptools
+
+about:
+  home: https://github.com/klahnakoski/mo-future
+  license: MPL 2.0
+  summary: More future! Make Python 2/3 compatibility a bit easier
+  description: |
+    More future! Make Python 2/3 compatibility a bit easier
+
+    This package provides utilities to make Python 2/3 compatibility a bit easier.
+
+    For more details, please visit the GitHub repository: https://github.com/klahnakoski/mo-future
+
+    Note: The long description is available in the PyPI repository.
+
+  doc_url: https://github.com/klahnakoski/mo-future
+  dev_url: https://github.com/klahnakoski/mo-future
+  doc_source_url: https://github.com/klahnakoski/mo-future
+  dev_source_url: https://github.com/klahnakoski/mo-future
