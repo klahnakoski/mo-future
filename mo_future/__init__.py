@@ -7,6 +7,7 @@
 # Contact: Kyle Lahnakoski (kyle@lahnakoski.com)
 #
 import json
+import platform
 import sys
 
 from collections import OrderedDict, UserDict
@@ -53,6 +54,11 @@ try:
     from time import process_time
 except:
     from time import clock as process_time
+
+if "windows" in platform.system().lower():
+    is_windows = True
+else:
+    is_windows = False
 
 izip = zip
 text = str
