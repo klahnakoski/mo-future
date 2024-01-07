@@ -6,11 +6,11 @@
         "Topic :: Software Development :: Libraries",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
-        "Programming Language :: Python :: 3.11"
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12"
     ],
     "description": "More future! Make Python 2/3 compatibility a bit easier",
     "install_requires": [],
@@ -87,5 +87,5 @@
     "name": "mo-future",
     "packages": ["mo_future"],
     "url": "https://github.com/klahnakoski/mo-future",
-    "version": "7.449.23304"
+    "version": "7.476.24007"
 }

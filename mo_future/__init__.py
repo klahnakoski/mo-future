@@ -12,6 +12,7 @@ import sys
 
 from collections import OrderedDict, UserDict
 from collections.abc import Callable, Iterable, Mapping, Set, MutableMapping
+from datetime import datetime, timezone
 from functools import cmp_to_key, reduce, update_wrapper
 from configparser import ConfigParser
 from itertools import zip_longest
@@ -24,9 +25,38 @@ from io import BytesIO
 from _thread import allocate_lock, get_ident, start_new_thread, interrupt_main
 
 
+__all__ = [
+    "__builtin__",
+    "allocate_lock",
+    "BytesIO",
+    "Callable",
+    "ConfigParser",
+    "get_ident",
+    "HTMLParser",
+    "input",
+    "interrupt_main",
+    "Iterable",
+    "izip",
+    "Mapping",
+    "MutableMapping",
+    "OrderedDict",
+    "process_time",
+    "reduce",
+    "Set",
+    "start_new_thread",
+    "StringIO",
+    "transpose",
+    "urlparse",
+    "UserDict",
+    "zip_longest",
+    "utcnow",
+    "utcfromtimestamp",
+]
+
 PYPY = False
 PY2 = False
 PY3 = True
+
 try:
     import __pypy__ as _
 
@@ -199,29 +229,18 @@ def flatten(items):
     return (vv for v in items for vv in v)
 
 
-_keep_imports = (
-    __builtin__,
-    allocate_lock,
-    BytesIO,
-    Callable,
-    ConfigParser,
-    get_ident,
-    HTMLParser,
-    input,
-    interrupt_main,
-    Iterable,
-    izip,
-    Mapping,
-    MutableMapping,
-    OrderedDict,
-    process_time,
-    reduce,
-    Set,
-    start_new_thread,
-    StringIO,
-    transpose,
-    urlparse,
-    UserDict,
-    zip_longest,
-)
+if sys.version_info >= (3, 12):
+    def utcnow():
+        return datetime.now(timezone.utc)
+
+    def utcfromtimestamp(timestamp):
+        return datetime.fromtimestamp(timestamp, timezone.utc)
+else:
+    utcnow = datetime.utcnow
+
+    def utcfromtimestamp(u):
+        d = datetime.utcfromtimestamp(u)
+        d = d.replace(tzinfo=timezone.utc)
+        return d
+
 
