@@ -1,0 +1,5 @@
+# Tests pass with these versions 2024-01-31T03:39:56Z
+mo-future==7.519.24031
+pip==23.3.2
+setuptools==69.0.3
+wheel==0.42.0
