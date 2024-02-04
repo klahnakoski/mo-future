@@ -38,6 +38,7 @@ __all__ = [
     "interrupt_main",
     "is_binary",
     "is_text",
+    "is_windows",
     "Iterable",
     "izip",
     "Mapping",
