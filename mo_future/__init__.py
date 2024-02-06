@@ -60,6 +60,8 @@ __all__ = [
     "sort_using_key",
     "start_new_thread",
     "StringIO",
+    "STDOUT",
+    "STDERR",
     "text",
     "transpose",
     "urlparse",
