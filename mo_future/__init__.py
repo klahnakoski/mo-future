@@ -2,28 +2,26 @@
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this file,
-# You can obtain one at http://mozilla.org/MPL/2.0/.
+# You can obtain one at https://www.mozilla.org/en-US/MPL/2.0/.
 #
 # Contact: Kyle Lahnakoski (kyle@lahnakoski.com)
 #
+import builtins as __builtin__
 import json
 import platform
 import sys
-
+from _thread import allocate_lock, get_ident, start_new_thread, interrupt_main
+from builtins import input
 from collections import OrderedDict, UserDict
 from collections.abc import Callable, Iterable, Mapping, Set, MutableMapping
+from configparser import ConfigParser
 from datetime import datetime, timezone
 from functools import cmp_to_key, reduce, update_wrapper
-from configparser import ConfigParser
-from itertools import zip_longest
-import builtins as __builtin__
-from builtins import input
 from html.parser import HTMLParser
-from urllib.parse import urlparse
-from io import StringIO
 from io import BytesIO
-from _thread import allocate_lock, get_ident, start_new_thread, interrupt_main
-
+from io import StringIO
+from itertools import zip_longest
+from urllib.parse import urlparse
 
 __all__ = [
     "__builtin__",
@@ -253,11 +251,14 @@ def flatten(items):
 
 
 if sys.version_info >= (3, 12):
+
     def utcnow():
         return datetime.now(timezone.utc)
 
     def utcfromtimestamp(timestamp):
         return datetime.fromtimestamp(timestamp, timezone.utc)
+
+
 else:
     utcnow = datetime.utcnow
 
@@ -265,5 +266,3 @@ else:
         d = datetime.utcfromtimestamp(u)
         d = d.replace(tzinfo=timezone.utc)
         return d
-
-
