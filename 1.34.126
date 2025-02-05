@@ -1,0 +1,22 @@
+Requirement already satisfied: boto3 in c:\python313\lib\site-packages (1.36.11)
+Collecting boto3
+  Using cached boto3-1.36.13-py3-none-any.whl.metadata (6.7 kB)
+Collecting botocore<1.37.0,>=1.36.13 (from boto3)
+  Using cached botocore-1.36.13-py3-none-any.whl.metadata (5.7 kB)
+Requirement already satisfied: jmespath<2.0.0,>=0.7.1 in c:\python313\lib\site-packages (from boto3) (1.0.1)
+Requirement already satisfied: s3transfer<0.12.0,>=0.11.0 in c:\python313\lib\site-packages (from boto3) (0.11.2)
+Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in c:\python313\lib\site-packages (from botocore<1.37.0,>=1.36.13->boto3) (2.9.0.post0)
+Requirement already satisfied: urllib3!=2.2.0,<3,>=1.25.4 in c:\python313\lib\site-packages (from botocore<1.37.0,>=1.36.13->boto3) (2.3.0)
+Requirement already satisfied: six>=1.5 in c:\python313\lib\site-packages (from python-dateutil<3.0.0,>=2.1->botocore<1.37.0,>=1.36.13->boto3) (1.17.0)
+Using cached boto3-1.36.13-py3-none-any.whl (139 kB)
+Using cached botocore-1.36.13-py3-none-any.whl (13.3 MB)
+Installing collected packages: botocore, boto3
+  Attempting uninstall: botocore
+    Found existing installation: botocore 1.36.11
+    Uninstalling botocore-1.36.11:
+      Successfully uninstalled botocore-1.36.11
+  Attempting uninstall: boto3
+    Found existing installation: boto3 1.36.11
+    Uninstalling boto3-1.36.11:
+      Successfully uninstalled boto3-1.36.11
+Successfully installed boto3-1.36.13 botocore-1.36.13
