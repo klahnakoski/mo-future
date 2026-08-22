@@ -13,10 +13,8 @@ from _thread import allocate_lock, get_ident, start_new_thread, interrupt_main
 from builtins import input
 from collections import OrderedDict, UserDict
 from collections.abc import Callable, Iterable, Mapping, Set, MutableMapping
-from configparser import ConfigParser
 from datetime import datetime, timezone
 from functools import cmp_to_key, reduce, update_wrapper
-from html.parser import HTMLParser
 from io import BytesIO
 from io import StringIO
 from itertools import zip_longest
@@ -74,6 +72,20 @@ __all__ = [
     "utcnow",
     "utcfromtimestamp",
 ]
+
+# NAME -> MODULE IT LIVES IN; IMPORTED ON FIRST ACCESS (PEP 562)
+_lazy_modules = {
+    "ConfigParser": "configparser",
+    "HTMLParser": "html.parser",
+}
+
+
+def __getattr__(name):
+    module = _lazy_modules.get(name)
+    if not module:
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+    value = globals()[name] = getattr(__import__(module, fromlist=[name]), name)
+    return value
 
 PYPY = False
 PY2 = False
