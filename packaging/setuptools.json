@@ -11,10 +11,11 @@
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
-        "Programming Language :: Python :: 3.13"
+        "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
+        "Programming Language :: Python :: 3.15"
     ],
     "description": "More future! Make Python 2/3 compatibility a bit easier",
-    "install_requires": [],
     "license": "MPL 2.0",
     "long_description": {
         "$concat": [
@@ -88,5 +89,5 @@
     "name": "mo-future",
     "packages": ["mo_future"],
     "url": "https://github.com/klahnakoski/mo-future",
-    "version": "7.685.25166"
+    "version": "7.686.26234"
 }

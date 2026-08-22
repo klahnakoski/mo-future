@@ -7,17 +7,13 @@
 # Contact: Kyle Lahnakoski (kyle@lahnakoski.com)
 #
 import builtins as __builtin__
-import json
-import platform
 import sys
 from _thread import allocate_lock, get_ident, start_new_thread, interrupt_main
 from builtins import input
 from collections import OrderedDict, UserDict
 from collections.abc import Callable, Iterable, Mapping, Set, MutableMapping
-from configparser import ConfigParser
 from datetime import datetime, timezone
 from functools import cmp_to_key, reduce, update_wrapper
-from html.parser import HTMLParser
 from io import BytesIO
 from io import StringIO
 from itertools import zip_longest
@@ -76,6 +72,32 @@ __all__ = [
     "utcfromtimestamp",
 ]
 
+# NAME -> FACTORY; BUILT ON FIRST ACCESS, SO ITS MODULE IS NOT IMPORTED UNTIL USED
+_lazy_values = {
+    "ConfigParser": lambda: __import__("configparser").ConfigParser,
+    "HTMLParser": lambda: __import__("html.parser", fromlist=["HTMLParser"]).HTMLParser,
+    "utf8_json_encoder": lambda: __import__("json")
+    .JSONEncoder(
+        skipkeys=False,
+        ensure_ascii=False,  # DIFF FROM DEFAULTS
+        check_circular=True,
+        allow_nan=True,
+        indent=None,
+        separators=(",", ":"),
+        default=None,
+        sort_keys=True,  # <-- IMPORTANT!  sort_keys==True
+    )
+    .encode,
+}
+
+
+def __getattr__(name):
+    make = _lazy_values.get(name)
+    if not make:
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+    value = globals()[name] = make()
+    return value
+
 PYPY = False
 PY2 = False
 PY3 = True
@@ -108,10 +130,7 @@ try:
 except:
     from time import clock as process_time
 
-if "windows" in platform.system().lower():
-    is_windows = True
-else:
-    is_windows = False
+is_windows = sys.platform == "win32"
 
 izip = zip
 text = str
@@ -201,22 +220,6 @@ def is_text(t):
 
 def is_binary(b):
     return b.__class__ is bytes
-
-
-utf8_json_encoder = (
-    json
-    .JSONEncoder(
-        skipkeys=False,
-        ensure_ascii=False,  # DIFF FROM DEFAULTS
-        check_circular=True,
-        allow_nan=True,
-        indent=None,
-        separators=(",", ":"),
-        default=None,
-        sort_keys=True,  # <-- IMPORTANT!  sort_keys==True
-    )
-    .encode
-)
 
 
 function_type = (lambda: None).__class__
