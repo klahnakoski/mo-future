@@ -7,7 +7,6 @@
 # Contact: Kyle Lahnakoski (kyle@lahnakoski.com)
 #
 import builtins as __builtin__
-import json
 import sys
 from _thread import allocate_lock, get_ident, start_new_thread, interrupt_main
 from builtins import input
@@ -73,18 +72,30 @@ __all__ = [
     "utcfromtimestamp",
 ]
 
-# NAME -> MODULE IT LIVES IN; IMPORTED ON FIRST ACCESS (PEP 562)
-_lazy_modules = {
-    "ConfigParser": "configparser",
-    "HTMLParser": "html.parser",
+# NAME -> FACTORY; BUILT ON FIRST ACCESS, SO ITS MODULE IS NOT IMPORTED UNTIL USED
+_lazy_values = {
+    "ConfigParser": lambda: __import__("configparser").ConfigParser,
+    "HTMLParser": lambda: __import__("html.parser", fromlist=["HTMLParser"]).HTMLParser,
+    "utf8_json_encoder": lambda: __import__("json")
+    .JSONEncoder(
+        skipkeys=False,
+        ensure_ascii=False,  # DIFF FROM DEFAULTS
+        check_circular=True,
+        allow_nan=True,
+        indent=None,
+        separators=(",", ":"),
+        default=None,
+        sort_keys=True,  # <-- IMPORTANT!  sort_keys==True
+    )
+    .encode,
 }
 
 
 def __getattr__(name):
-    module = _lazy_modules.get(name)
-    if not module:
+    make = _lazy_values.get(name)
+    if not make:
         raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
-    value = globals()[name] = getattr(__import__(module, fromlist=[name]), name)
+    value = globals()[name] = make()
     return value
 
 PYPY = False
@@ -209,22 +220,6 @@ def is_text(t):
 
 def is_binary(b):
     return b.__class__ is bytes
-
-
-utf8_json_encoder = (
-    json
-    .JSONEncoder(
-        skipkeys=False,
-        ensure_ascii=False,  # DIFF FROM DEFAULTS
-        check_circular=True,
-        allow_nan=True,
-        indent=None,
-        separators=(",", ":"),
-        default=None,
-        sort_keys=True,  # <-- IMPORTANT!  sort_keys==True
-    )
-    .encode
-)
 
 
 function_type = (lambda: None).__class__

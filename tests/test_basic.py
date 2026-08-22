@@ -13,7 +13,7 @@ class TestBasic(TestCase):
 
     def test_lazy_modules_not_loaded(self):
         result = subprocess.run(
-            [sys.executable, "-c", "import sys, mo_future; print(sorted(m for m in ('configparser', 'html.parser') if m in sys.modules))"],
+            [sys.executable, "-c", "import sys, mo_future; print(sorted(m for m in ('configparser', 'html.parser', 'json') if m in sys.modules))"],
             capture_output=True,
             text=True,
             cwd=dirname(dirname(mo_future.__file__)),
@@ -27,6 +27,11 @@ class TestBasic(TestCase):
 
         self.assertIs(mo_future.ConfigParser, ConfigParser)
         self.assertIs(mo_future.HTMLParser, HTMLParser)
+
+    def test_utf8_json_encoder(self):
+        from mo_future import utf8_json_encoder
+
+        self.assertEqual(utf8_json_encoder({"b": 1, "a": "é"}), '{"a":"é","b":1}')
 
     def test_unknown_attribute(self):
         with self.assertRaises(AttributeError):
