@@ -17,7 +17,6 @@ from functools import cmp_to_key, reduce, update_wrapper
 from io import BytesIO
 from io import StringIO
 from itertools import zip_longest
-from urllib.parse import urlparse
 
 __all__ = [
     "__builtin__",
@@ -76,6 +75,7 @@ __all__ = [
 _lazy_values = {
     "ConfigParser": lambda: __import__("configparser").ConfigParser,
     "HTMLParser": lambda: __import__("html.parser", fromlist=["HTMLParser"]).HTMLParser,
+    "urlparse": lambda: __import__("urllib.parse", fromlist=["urlparse"]).urlparse,
     "utf8_json_encoder": lambda: __import__("json")
     .JSONEncoder(
         skipkeys=False,
