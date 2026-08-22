@@ -8,7 +8,6 @@
 #
 import builtins as __builtin__
 import json
-import platform
 import sys
 from _thread import allocate_lock, get_ident, start_new_thread, interrupt_main
 from builtins import input
@@ -108,10 +107,7 @@ try:
 except:
     from time import clock as process_time
 
-if "windows" in platform.system().lower():
-    is_windows = True
-else:
-    is_windows = False
+is_windows = sys.platform == "win32"
 
 izip = zip
 text = str
