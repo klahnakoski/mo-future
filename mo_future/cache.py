@@ -24,7 +24,6 @@ from mo_times.durations import DAY
 
 
 class cache:
-
     """
     :param func: ASSUME FIRST PARAMETER OF `func` IS `self`
     :param duration: USE CACHE IF LAST CALL WAS LESS THAN duration AGO
