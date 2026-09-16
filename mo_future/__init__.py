@@ -98,6 +98,7 @@ def __getattr__(name):
     value = globals()[name] = make()
     return value
 
+
 PYPY = False
 PY2 = False
 PY3 = True
@@ -262,7 +263,6 @@ if sys.version_info >= (3, 12):
 
     def utcfromtimestamp(timestamp):
         return datetime.fromtimestamp(timestamp, timezone.utc)
-
 
 else:
     utcnow = datetime.utcnow
