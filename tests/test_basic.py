@@ -38,3 +38,12 @@ class TestBasic(TestCase):
     def test_unknown_attribute(self):
         with self.assertRaises(AttributeError):
             mo_future.does_not_exist
+
+
+class TestIsBinary(TestCase):
+    def test_bytes_and_bytearray_are_binary(self):
+        self.assertTrue(mo_future.is_binary(b"a"))
+        self.assertTrue(mo_future.is_binary(bytearray(b"a")))
+
+    def test_text_is_not_binary(self):
+        self.assertFalse(mo_future.is_binary("a"))
