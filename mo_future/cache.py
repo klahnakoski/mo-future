@@ -15,7 +15,7 @@ from types import FunctionType
 
 from mo_dots import Null
 from mo_future import get_function_arguments, get_function_name, get_function_defaults
-from mo_logs import Log
+from mo_logs import logger
 from mo_logs.exceptions import Except
 from mo_math import randoms
 from mo_threads import Lock
@@ -77,7 +77,7 @@ def wrap_function(cache_store, func_):
 
     def output(*args, **kwargs):
         if kwargs:
-            Log.error("Sorry, caching only works with ordered parameter, not keyword arguments")
+            logger.error("Sorry, caching only works with ordered parameter, not keyword arguments")
 
         with cache_store.locker:
             if using_self:

@@ -220,7 +220,7 @@ def is_text(t):
 
 
 def is_binary(b):
-    return b.__class__ is bytes
+    return b.__class__ in (bytes, bytearray)
 
 
 function_type = (lambda: None).__class__
